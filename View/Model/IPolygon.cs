@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Model
 {
     public interface IPolygon
+
     {
-        double GetHectareas();
-        double GetHectareas1();
-        double GetScale();
+
+        double GetHectares();
+        double GetHectares1();
+        string GetScale();
         double GetStArea();
         double GetStLength();
-        List<double[]> GetPoints();
+        List<DoublePoint> GetPoints();
+        Color GetColor();
+        void SetColor(Color color);
+
+
 
     }
 }

@@ -11,12 +11,15 @@ namespace Model
     {
         IZone GetZone(string name);
         IZone GetZone(double lat, double lng);
-        List<IZone> GetZones();
-        void ReadAreasFile(Stream stream);
-        void ReadVisitorsFile(Stream stream);
-        void ReadCostsFile(Stream stream);
+        ICollection<IZone> GetZones();
+        void ReadAreasFile(string path);
+        void ReadVisitorsFile(string path);
+        void ReadCostsFile(string path);
         void SetMarker();
-        List<IZone> GetZonesByCategory(string category);
+        IZone FilterZoneByCost();
+        IZone FilterZoneByCategory();
+        IZone FilterZoneByVisitors();
+        IZone FilterZoneByOpeningState();
 
     }
 }

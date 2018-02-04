@@ -8,31 +8,45 @@ namespace Model
 {
     public class Zone : IZone
     {
+        private string name;
+        private string category;
+        private IPolygon polygon;
+        private string resolution;
+        private string territory;
 
+
+        public Zone(string name, string category, IPolygon polygon, string resolution, string territory)
+        {
+            this.name = name;
+            this.category = category;
+            this.polygon = polygon;
+            this.resolution = resolution;
+            this.territory = territory;
+        }
 
         public string GetCategory()
         {
-            throw new NotImplementedException();
+            return category;
         }
 
         public string GetName()
         {
-            throw new NotImplementedException();
+            return name;
         }
 
         public IPolygon GetPolygonArea()
         {
-            throw new NotImplementedException();
+            return polygon;
         }
 
         public string GetResolution()
         {
-            throw new NotImplementedException();
+            return resolution;
         }
 
         public string GetTerritory()
         {
-            throw new NotImplementedException();
+            return territory;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,34 +9,70 @@ namespace Model
 {
     public class Polygon : IPolygon
     {
-        public double GetHectareas()
+
+
+        private double hectares;
+        private double hectares1;
+        private List<DoublePoint> points;
+        private string scale;
+        private double stArea;
+        private double stLength;
+        private Color color;
+
+        
+
+       
+
+        public Polygon(double hectares, double hectares1, List<DoublePoint> points, string scale, double stArea, double stLength, Color color)
         {
-            throw new NotImplementedException();
+            
+            this.hectares = hectares;
+            this.hectares1 = hectares1;
+            this.points = points;
+            this.scale = scale;
+            this.stArea = stArea;
+            this.stLength = stLength;
+            this.color = color;
         }
 
-        public double GetHectareas1()
+        public Color GetColor()
         {
-            throw new NotImplementedException();
+            return color;
         }
 
-        public List<double[]> GetPoints()
+        public double GetHectares()
         {
-            throw new NotImplementedException();
+            return hectares;
         }
 
-        public double GetScale()
+        public double GetHectares1()
         {
-            throw new NotImplementedException();
+            return hectares1;
+        }
+
+        public List<DoublePoint> GetPoints()
+        {
+            return points;
+        }
+
+        public string GetScale()
+        {
+            return scale;
         }
 
         public double GetStArea()
         {
-            throw new NotImplementedException();
+            return stArea;
         }
 
         public double GetStLength()
         {
-            throw new NotImplementedException();
+            return stLength;
+        }
+
+        public void SetColor(Color color)
+        {
+            this.color = color;
         }
     }
 }
