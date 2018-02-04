@@ -187,6 +187,16 @@ namespace Model
         public void ReadVisitorsFile(string path)
         {
             StreamReader reader = new StreamReader(path: path);
+            reader.ReadLine();
+            string line = null;
+            while ((line = reader.ReadLine())!=null)
+            {
+                
+                string[] infoSplit = line.Split(',');
+                string nameZone = infoSplit[0].Split(' ')[1];
+                IZone zone =GetZone(nameZone);
+            }
+            
 
         }
 

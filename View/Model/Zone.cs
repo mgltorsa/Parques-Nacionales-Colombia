@@ -20,6 +20,7 @@ namespace Model
         private IPolygon polygon;
         private string resolution;
         private string territory;
+        
 
 
         public Zone(string name, string category, IPolygon polygon, string resolution, string territory)

@@ -79,5 +79,14 @@ namespace View.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a direccion_territorial,area_protegida,mes,adultos_nacionales_2011,ninos_y_estudiantes_2011,extranjeros_2011,extranjeros_residentes_2011,ninos_residentes_2011,adultos_residentes_2011,ninos_excentos_no_residentes_2011,adultos_excentos_no_residentes_2011,adultos_nacionales_2012,ninos_y_estudiantes_2012,extranjeros_2012,extranjeros_residentes_2012,ninos_residentes_2012,adultos_residentes_2012,ninos_excentos_no_residentes_2012,adultos_excentos_no_residentes_2012,adultos_nacionales_2013,ninos_y_estudiantes_2013,ex [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string Visitantes {
+            get {
+                return ResourceManager.GetString("Visitantes", resourceCulture);
+            }
+        }
     }
 }

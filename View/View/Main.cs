@@ -23,7 +23,7 @@ namespace View
         public const double INIT_LAT = 4.0000000;
         public const double INIT_LNG = -72.0000000;
         public const string LIMITS_PATH = "..//..//Resources/LimitesParques.csv";
-        public const string VISITORS_PATH = "..//..//Resources/visitantes.csv";
+        public const string VISITORS_PATH = "..//..//Resources/Visitantes.csv";
         const string PATTERN = @"\[([^\]]*)\]";
 
         private IParkSystem parkSystem;
@@ -58,10 +58,12 @@ namespace View
 
         private void LoadCostsFile()
         {
+
         }
 
         private void LoadVisitorsFile()
         {
+            parkSystem.ReadVisitorsFile(VISITORS_PATH);
         }
 
         private void LoadAreasFile()
