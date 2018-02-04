@@ -62,7 +62,6 @@ namespace View
 
         private void LoadVisitorsFile()
         {
-            parkSystem.ReadVisitorsFile(VISITORS_PATH);
         }
 
         private void LoadAreasFile()
