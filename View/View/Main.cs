@@ -70,30 +70,30 @@ namespace View
                     string infoCoordinates = info[i].Trim();
                     string[] parCoordinates = infoCoordinates.Split(' ');
 
-                    double lng = 0;
-                    double lat = 0;
-                    if (parCoordinates.Length > 1)
+                    
+                    if (!(parCoordinates.Length > 1))
                     {
-                        Double.TryParse(parCoordinates[0], out lng);
-                        Double.TryParse(parCoordinates[1], out lat);
-                    }
-
-                    if (lng == 0 || lat == 0)
-                    {
-                        count = i;
                         break;
                     }
-                    else
+
+                    
+                   bool a= Double.TryParse(parCoordinates[0], out double lng);
+                   bool b = Double.TryParse(parCoordinates[1], out double lat);
+
+
+                    if (a&&b)
                     {
-                        sw.WriteLine(parCoordinates[0] + " " + parCoordinates[1]);
                         points.Add(new PointLatLng(lat, lng));
                     }
+
                 }
+
 
 
                 GMapPolygon polygon = new GMapPolygon(points, "Polygon1")
                 {
                     Fill = Brushes.GreenYellow
+
                 };
                 polygonOverlay.Polygons.Add(polygon);
             }
@@ -108,22 +108,10 @@ namespace View
             map.Zoom -= 1;
         }
 
-        private string[] ConvertToLimitCoor(string[] coorPolygon)
-        {
-            string[] polygon = new string[coorPolygon.Length];
-            for (int i = 0; i < coorPolygon.Length; i++)
-            {
-                polygon[i] = coorPolygon[i].Trim();
-            }
-
-            return polygon;
-        }
+       
 
 
 
-        private string GetMultyPolygonLine(string[] infoLine)
-        {
-            return null;
-        }
+       
     }
 }

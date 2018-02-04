@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.map = new GMap.NET.WindowsForms.GMapControl();
+            this.map = new ControlMap();
             this.SuspendLayout();
             // 
             // map
@@ -72,7 +72,7 @@
 
         #endregion
 
-        private GMap.NET.WindowsForms.GMapControl map;
+        private ControlMap map;
     }
 }
 
