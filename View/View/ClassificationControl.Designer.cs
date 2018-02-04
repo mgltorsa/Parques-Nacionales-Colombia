@@ -120,5 +120,6 @@ namespace View
         private System.Windows.Forms.RadioButton rbVIsitors;
         private System.Windows.Forms.RadioButton rbCost;
         private System.Windows.Forms.RadioButton rbCategory;
+        private Main main;
     }
 }

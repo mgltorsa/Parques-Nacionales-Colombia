@@ -19,22 +19,47 @@ namespace Model
             zones = new Dictionary<string, IZone>();
         }
 
-        public IZone FilterZoneByCategory()
+        public ICollection<IZone> FilterZoneByCategory()
+        {
+            ICollection<IZone> collectionZone = zones.Values;
+            foreach (IZone zone in collectionZone)
+            {
+                switch (zone.GetCategory())
+                {
+                    case Zone.PNN:
+                        zone.GetPolygonArea().SetColor(GetPNNColor());
+                        break;
+
+                    case Zone.ANU:
+                        zone.GetPolygonArea().SetColor(GetANUColor());
+                        break;
+                    case Zone.VP:
+                        zone.GetPolygonArea().SetColor(GetVPColor());
+                        break;
+                    case Zone.SFF:
+                        zone.GetPolygonArea().SetColor(GetSFFColor());
+                        break;
+                    case Zone.RN:
+                        zone.GetPolygonArea().SetColor(GetRNColor());
+                        break;
+
+                }
+            }
+
+            return collectionZone;
+        }
+
+        public ICollection<IZone> FilterZoneByCost()
         {
             throw new NotImplementedException();
         }
 
-        public IZone FilterZoneByCost()
+        public ICollection<IZone> FilterZoneByOpeningState()
         {
             throw new NotImplementedException();
         }
 
-        public IZone FilterZoneByOpeningState()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IZone FilterZoneByVisitors()
+        public ICollection<IZone> FilterZoneByVisitors()
         {
             throw new NotImplementedException();
         }
@@ -54,10 +79,6 @@ namespace Model
             return zones.Values;
         }
 
-        public List<IZone> GetZonesByCategory(string category)
-        {
-            throw new NotImplementedException();
-        }
 
         public void ReadAreasFile(string path)
         {
@@ -67,10 +88,7 @@ namespace Model
             while ((line = reader.ReadLine()) != null)
             {
                 IZone zone = CreateZone(line);
-
                 zones[zone.GetName()] = zone;
-
-
             }
 
             reader.Close();
@@ -136,6 +154,31 @@ namespace Model
 
         }
 
+        private Color GetPNNColor()
+        {
+            return Color.FromArgb(100, 46, 196, 101);
+        }
+
+        private Color GetSFFColor()
+        {
+            return Color.FromArgb(100, 30, 171, 176);
+        }
+
+        private Color GetVPColor()
+        {
+            return Color.FromArgb(100, 160, 179, 39);
+        }
+
+        private Color GetANUColor()
+        {
+            return Color.FromArgb(100, 38, 112, 186);
+        }
+
+        private Color GetRNColor()
+        {
+            return Color.FromArgb(100, 188, 118, 39);
+        }
+
         public void ReadCostsFile(string path)
         {
             throw new NotImplementedException();
@@ -143,7 +186,8 @@ namespace Model
 
         public void ReadVisitorsFile(string path)
         {
-            throw new NotImplementedException();
+            StreamReader reader = new StreamReader(path: path);
+
         }
 
         public void SetMarker()

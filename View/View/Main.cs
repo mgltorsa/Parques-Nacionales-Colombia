@@ -23,6 +23,7 @@ namespace View
         public const double INIT_LAT = 4.0000000;
         public const double INIT_LNG = -72.0000000;
         public const string LIMITS_PATH = "..//..//Resources/LimitesParques.csv";
+        public const string VISITORS_PATH = "..//..//Resources/visitantes.csv";
         const string PATTERN = @"\[([^\]]*)\]";
 
         private IParkSystem parkSystem;
@@ -36,10 +37,18 @@ namespace View
 
         }
 
+        public void FilterByCategory()
+        {
+            ICollection<IZone> zones = parkSystem.FilterZoneByCategory();
+            map.RefreshAreas(zones);
+        }
+
         private void Main_Load(object sender, EventArgs e)
         {
             parkSystem = new ParkSystem();
             map.SetDefaultOptions();
+            map.SetMain(this);
+            classiControl.SetMain(this);
             LoadAreasFile();
             LoadVisitorsFile();
             LoadCostsFile();
@@ -53,11 +62,17 @@ namespace View
 
         private void LoadVisitorsFile()
         {
+            parkSystem.ReadVisitorsFile(VISITORS_PATH);
         }
 
         private void LoadAreasFile()
         {
             parkSystem.ReadAreasFile(LIMITS_PATH);
+            RefreshMap();
+        }
+
+        private void RefreshMap()
+        {
             map.RefreshAreas(parkSystem.GetZones());
         }
 
@@ -87,6 +102,42 @@ namespace View
             sw.Close();
         }
 
-        
+        private void MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            map.AddMarker(e.X, e.Y);
+        }
+
+        internal string GetInfoZone(string zoneName)
+        {
+            IZone zone = parkSystem.GetZone(zoneName);
+            string info = zone.GetName() + "\n"
+                 + zone.GetCategory() + "\n"
+                 + zone.GetTerritory() + "\n";
+
+            IPolygon polygon = zone.GetPolygonArea();
+            info += polygon.GetHectares() + "\n"
+                + polygon.GetStArea() + "\n"
+                + polygon.GetStLength() + "\n";
+
+            return info;
+        }
+
+        private void MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                map.MouseRightOption();
+            }
+        }
+
+        private void MouseMove(object sender, MouseEventArgs e)
+        {
+            map.MouseMoved(e.X, e.Y);
+        }
+
+        private void EliminarToolStripMenu(object sender, EventArgs e)
+        {
+
+        }
     }
 }

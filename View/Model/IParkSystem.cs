@@ -16,10 +16,10 @@ namespace Model
         void ReadVisitorsFile(string path);
         void ReadCostsFile(string path);
         void SetMarker();
-        IZone FilterZoneByCost();
-        IZone FilterZoneByCategory();
-        IZone FilterZoneByVisitors();
-        IZone FilterZoneByOpeningState();
+        ICollection<IZone> FilterZoneByCost();
+        ICollection<IZone> FilterZoneByCategory();
+        ICollection<IZone> FilterZoneByVisitors();
+        ICollection<IZone> FilterZoneByOpeningState();
 
     }
 }

@@ -12,9 +12,15 @@ namespace View
 {
     public partial class ClassificationControl : UserControl
     {
+       
         public ClassificationControl()
         {
             InitializeComponent();
+        }
+
+        public void SetMain(Main main)
+        {
+            this.main = main;
         }
 
         private void ChangeLisener(object sender, EventArgs e)
@@ -25,7 +31,7 @@ namespace View
 
                 if (sender == rbCategory)
                 {
-                    MessageBox.Show("RbCat");
+                    main.FilterByCategory();
                 }
                 else if (sender == rbCost)
                 {
@@ -43,6 +49,6 @@ namespace View
             }
         }
 
-       
+        
     }
 }

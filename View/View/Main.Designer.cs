@@ -29,10 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.map = new View.ControlMap();
-            this.filterControl1 = new View.FilterControl();
             this.classiControl = new View.ClassificationControl();
+            this.filterControl1 = new View.FilterControl();
+            this.map = new View.ControlMap();
             this.SuspendLayout();
+            // 
+            // classiControl
+            // 
+            this.classiControl.BackColor = System.Drawing.Color.LightGray;
+            this.classiControl.Location = new System.Drawing.Point(489, 554);
+            this.classiControl.Name = "classiControl";
+            this.classiControl.Size = new System.Drawing.Size(632, 128);
+            this.classiControl.TabIndex = 3;
+            // 
+            // filterControl1
+            // 
+            this.filterControl1.BackColor = System.Drawing.Color.LightGray;
+            this.filterControl1.Location = new System.Drawing.Point(199, 62);
+            this.filterControl1.Name = "filterControl1";
+            this.filterControl1.Size = new System.Drawing.Size(189, 265);
+            this.filterControl1.TabIndex = 2;
             // 
             // map
             // 
@@ -45,7 +61,7 @@
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemmory = 5;
-            this.map.Location = new System.Drawing.Point(313, 16);
+            this.map.Location = new System.Drawing.Point(412, 26);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 2;
             this.map.MinZoom = 2;
@@ -59,25 +75,12 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(633, 491);
+            this.map.Size = new System.Drawing.Size(756, 503);
             this.map.TabIndex = 0;
             this.map.Zoom = 0D;
-            // 
-            // filterControl1
-            // 
-            this.filterControl1.BackColor = System.Drawing.Color.LightGray;
-            this.filterControl1.Location = new System.Drawing.Point(102, 26);
-            this.filterControl1.Name = "filterControl1";
-            this.filterControl1.Size = new System.Drawing.Size(189, 265);
-            this.filterControl1.TabIndex = 2;
-            // 
-            // classiControl
-            // 
-            this.classiControl.BackColor = System.Drawing.Color.LightGray;
-            this.classiControl.Location = new System.Drawing.Point(324, 546);
-            this.classiControl.Name = "classiControl";
-            this.classiControl.Size = new System.Drawing.Size(632, 128);
-            this.classiControl.TabIndex = 3;
+            this.map.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MouseClick);
+            this.map.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.MouseDoubleClick);
+            this.map.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove);
             // 
             // Main
             // 
@@ -88,7 +91,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1194, 714);
             this.Controls.Add(this.classiControl);
             this.Controls.Add(this.filterControl1);
             this.Controls.Add(this.map);

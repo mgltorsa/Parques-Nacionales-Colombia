@@ -8,6 +8,13 @@ namespace Model
 {
     public class Zone : IZone
     {
+        public const string PNN = "PNN";
+        public const string SFF = "SFF";
+        public const string RN = "RN";
+        public const string ANU = "ANU";
+        public const string VP = "VP";
+
+
         private string name;
         private string category;
         private IPolygon polygon;
