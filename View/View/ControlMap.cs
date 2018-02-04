@@ -53,11 +53,14 @@ namespace View
                     double length = point.Length;
                     points.Add(new PointLatLng(lat,length));
                 }
-               
 
-                GMapPolygon mapPolygon = new GMapPolygon(points,zone.GetName()+"Polygon");
-                mapPolygon.Fill = new SolidBrush(iPolygon.GetColor());
-                mapPolygon.Stroke = Pens.Black;
+
+                GMapPolygon mapPolygon = new GMapPolygon(points, zone.GetName() + "Polygon")
+                {
+                    Fill = new SolidBrush(iPolygon.GetColor()),
+                    Stroke = Pens.Black
+                };
+
                 overlayPolygons.Polygons.Add(mapPolygon);
             }
             Zoom += 1;
@@ -65,5 +68,7 @@ namespace View
 
 
         }
+
+      
     }
 }

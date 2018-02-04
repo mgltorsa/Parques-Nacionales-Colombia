@@ -51,11 +51,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassificationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ClassificationControl.Designer.cs">
+      <DependentUpon>ClassificationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlMap.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ControlMap.Designer.cs">
       <DependentUpon>ControlMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilterControl.Designer.cs">
+      <DependentUpon>FilterControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -65,8 +77,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ClassificationControl.resx">
+      <DependentUpon>ClassificationControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlMap.resx">
       <DependentUpon>ControlMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterControl.resx">
+      <DependentUpon>FilterControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -101,6 +119,9 @@
       <Project>{f35b46a6-9c2a-47fc-a636-57da69f3ec5d}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Parques.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

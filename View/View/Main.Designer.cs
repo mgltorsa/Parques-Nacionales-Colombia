@@ -28,18 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.map = new ControlMap();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            this.map = new View.ControlMap();
+            this.filterControl1 = new View.FilterControl();
+            this.classiControl = new View.ClassificationControl();
             this.SuspendLayout();
             // 
             // map
             // 
+            this.map.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.map.BackColor = System.Drawing.Color.LightGray;
+            this.map.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.map.Bearing = 0F;
             this.map.CanDragMap = true;
             this.map.EmptyTileColor = System.Drawing.Color.Navy;
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemmory = 5;
-            this.map.Location = new System.Drawing.Point(212, 26);
+            this.map.Location = new System.Drawing.Point(313, 16);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 2;
             this.map.MinZoom = 2;
@@ -53,26 +59,53 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(740, 540);
+            this.map.Size = new System.Drawing.Size(633, 491);
             this.map.TabIndex = 0;
             this.map.Zoom = 0D;
+            // 
+            // filterControl1
+            // 
+            this.filterControl1.BackColor = System.Drawing.Color.LightGray;
+            this.filterControl1.Location = new System.Drawing.Point(102, 26);
+            this.filterControl1.Name = "filterControl1";
+            this.filterControl1.Size = new System.Drawing.Size(189, 265);
+            this.filterControl1.TabIndex = 2;
+            // 
+            // classiControl
+            // 
+            this.classiControl.BackColor = System.Drawing.Color.LightGray;
+            this.classiControl.Location = new System.Drawing.Point(324, 546);
+            this.classiControl.Name = "classiControl";
+            this.classiControl.Size = new System.Drawing.Size(632, 128);
+            this.classiControl.TabIndex = 3;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(980, 599);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.classiControl);
+            this.Controls.Add(this.filterControl1);
             this.Controls.Add(this.map);
             this.Name = "Main";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Parques Nacionales";
             this.Load += new System.EventHandler(this.Main_Load);
             this.ResumeLayout(false);
 
         }
 
+
         #endregion
 
         private ControlMap map;
+        private FilterControl filterControl1;
+        private ClassificationControl classiControl;
     }
 }
 

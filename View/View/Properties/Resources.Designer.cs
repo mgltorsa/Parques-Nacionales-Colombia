@@ -69,5 +69,15 @@ namespace View.Properties {
                 return ResourceManager.GetString("LimitesParques", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Parques {
+            get {
+                object obj = ResourceManager.GetObject("Parques", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

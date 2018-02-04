@@ -13,6 +13,7 @@ using GMap.NET.WindowsForms;
 using System.IO;
 using GMap.NET.MapProviders;
 using Model;
+using View;
 
 
 namespace View
@@ -85,5 +86,7 @@ namespace View
             }
             sw.Close();
         }
+
+        
     }
 }
