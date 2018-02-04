@@ -35,15 +35,15 @@ namespace View
                 }
                 else if (sender == rbCost)
                 {
-                    MessageBox.Show("RbCost");
+                    main.FilterByCost();
                 }
                 else if (sender == rbOpeningState)
                 {
-                    MessageBox.Show("rbOp");
+                    main.FilterByOpeningState();
                 }
                 else if (sender == rbVIsitors)
                 {
-                    MessageBox.Show("rbVisit");
+                    main.FilterByVisitors();
 
                 }
             }

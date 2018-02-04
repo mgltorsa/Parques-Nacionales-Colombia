@@ -12,14 +12,41 @@ namespace View
 {
     public partial class FilterControl : UserControl
     {
+
+
         public FilterControl()
         {
             InitializeComponent();
         }
 
-        private void FilterControl_Load(object sender, EventArgs e)
+        public void SetMain(Main main)
         {
+            this.main = main;
+        }
 
+        private void ChangeListener(object sender, EventArgs e)
+        {
+            if (sender == cbNames)
+            {
+                main.ShowNamesLabels(cbNames.Checked);
+            }
+
+
+        }
+
+
+
+
+        public bool[] GetFiltersInformation()
+        {
+            bool[] filters = new bool[4];
+            filters[COST] = cbCost.Checked;
+            filters[FORECAST] = cbForecast.Checked;
+            filters[SCHEDULE] = cbSchedule.Checked;
+            filters[VISITS] = cbVisitors.Checked;
+
+            
+            return filters;
         }
     }
 }

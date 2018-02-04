@@ -2,6 +2,7 @@
 {
     partial class FilterControl
     {
+
         /// <summary> 
         /// Variable del diseñador necesaria.
         /// </summary>
@@ -31,8 +32,8 @@
             this.cbCost = new System.Windows.Forms.CheckBox();
             this.cbSchedule = new System.Windows.Forms.CheckBox();
             this.cbVisitors = new System.Windows.Forms.CheckBox();
-            this.chForecast = new System.Windows.Forms.CheckBox();
-            this.chNames = new System.Windows.Forms.CheckBox();
+            this.cbForecast = new System.Windows.Forms.CheckBox();
+            this.cbNames = new System.Windows.Forms.CheckBox();
             this.group = new System.Windows.Forms.GroupBox();
             this.group.SuspendLayout();
             this.SuspendLayout();
@@ -46,6 +47,7 @@
             this.cbCost.TabIndex = 0;
             this.cbCost.Text = "Precio de entrada";
             this.cbCost.UseVisualStyleBackColor = true;
+            this.cbCost.CheckedChanged += new System.EventHandler(this.ChangeListener);
             // 
             // cbSchedule
             // 
@@ -56,6 +58,7 @@
             this.cbSchedule.TabIndex = 1;
             this.cbSchedule.Text = "Horarios de apertura";
             this.cbSchedule.UseVisualStyleBackColor = true;
+            this.cbSchedule.CheckedChanged += new System.EventHandler(this.ChangeListener);
             // 
             // cbVisitors
             // 
@@ -66,33 +69,36 @@
             this.cbVisitors.TabIndex = 2;
             this.cbVisitors.Text = "Visitas en los últimos 2 años";
             this.cbVisitors.UseVisualStyleBackColor = true;
+            this.cbVisitors.CheckedChanged += new System.EventHandler(this.ChangeListener);
             // 
-            // chForecast
+            // cbForecast
             // 
-            this.chForecast.AutoSize = true;
-            this.chForecast.Location = new System.Drawing.Point(6, 216);
-            this.chForecast.Name = "chForecast";
-            this.chForecast.Size = new System.Drawing.Size(123, 17);
-            this.chForecast.TabIndex = 3;
-            this.chForecast.Text = "Pronostico de visitas";
-            this.chForecast.UseVisualStyleBackColor = true;
+            this.cbForecast.AutoSize = true;
+            this.cbForecast.Location = new System.Drawing.Point(6, 216);
+            this.cbForecast.Name = "cbForecast";
+            this.cbForecast.Size = new System.Drawing.Size(123, 17);
+            this.cbForecast.TabIndex = 3;
+            this.cbForecast.Text = "Pronostico de visitas";
+            this.cbForecast.UseVisualStyleBackColor = true;
+            this.cbForecast.CheckedChanged += new System.EventHandler(this.ChangeListener);
             // 
-            // chNames
+            // cbNames
             // 
-            this.chNames.AutoSize = true;
-            this.chNames.Location = new System.Drawing.Point(6, 271);
-            this.chNames.Name = "chNames";
-            this.chNames.Size = new System.Drawing.Size(113, 17);
-            this.chNames.TabIndex = 4;
-            this.chNames.Text = "Visualizar nombres";
-            this.chNames.UseVisualStyleBackColor = true;
+            this.cbNames.AutoSize = true;
+            this.cbNames.Location = new System.Drawing.Point(6, 271);
+            this.cbNames.Name = "cbNames";
+            this.cbNames.Size = new System.Drawing.Size(113, 17);
+            this.cbNames.TabIndex = 4;
+            this.cbNames.Text = "Visualizar nombres";
+            this.cbNames.UseVisualStyleBackColor = true;
+            this.cbNames.CheckedChanged += new System.EventHandler(this.ChangeListener);
             // 
             // group
             // 
             this.group.Controls.Add(this.cbCost);
-            this.group.Controls.Add(this.chNames);
+            this.group.Controls.Add(this.cbNames);
             this.group.Controls.Add(this.cbSchedule);
-            this.group.Controls.Add(this.chForecast);
+            this.group.Controls.Add(this.cbForecast);
             this.group.Controls.Add(this.cbVisitors);
             this.group.Location = new System.Drawing.Point(3, 13);
             this.group.Name = "group";
@@ -108,7 +114,6 @@
             this.Controls.Add(this.group);
             this.Name = "FilterControl";
             this.Size = new System.Drawing.Size(205, 325);
-            this.Load += new System.EventHandler(this.FilterControl_Load);
             this.group.ResumeLayout(false);
             this.group.PerformLayout();
             this.ResumeLayout(false);
@@ -120,8 +125,16 @@
         private System.Windows.Forms.CheckBox cbCost;
         private System.Windows.Forms.CheckBox cbSchedule;
         private System.Windows.Forms.CheckBox cbVisitors;
-        private System.Windows.Forms.CheckBox chForecast;
-        private System.Windows.Forms.CheckBox chNames;
+        private System.Windows.Forms.CheckBox cbForecast;
+        private System.Windows.Forms.CheckBox cbNames;
         private System.Windows.Forms.GroupBox group;
+        private Main main;
+        public const int COST = 0;
+        public const int SCHEDULE = 1;
+        public const int VISITS = 2;
+        public const short FORECAST = 3;
+        
+
+        
     }
 }

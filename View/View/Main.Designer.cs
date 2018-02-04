@@ -1,4 +1,5 @@
-﻿namespace View
+﻿using Model;
+namespace View
 {
     partial class Main
     {
@@ -30,7 +31,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.classiControl = new View.ClassificationControl();
-            this.filterControl1 = new View.FilterControl();
+            this.filterControl = new View.FilterControl();
             this.map = new View.ControlMap();
             this.SuspendLayout();
             // 
@@ -42,13 +43,13 @@
             this.classiControl.Size = new System.Drawing.Size(632, 128);
             this.classiControl.TabIndex = 3;
             // 
-            // filterControl1
+            // filterControl
             // 
-            this.filterControl1.BackColor = System.Drawing.Color.LightGray;
-            this.filterControl1.Location = new System.Drawing.Point(199, 62);
-            this.filterControl1.Name = "filterControl1";
-            this.filterControl1.Size = new System.Drawing.Size(189, 265);
-            this.filterControl1.TabIndex = 2;
+            this.filterControl.BackColor = System.Drawing.Color.LightGray;
+            this.filterControl.Location = new System.Drawing.Point(199, 62);
+            this.filterControl.Name = "filterControl";
+            this.filterControl.Size = new System.Drawing.Size(189, 320);
+            this.filterControl.TabIndex = 2;
             // 
             // map
             // 
@@ -93,7 +94,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1194, 714);
             this.Controls.Add(this.classiControl);
-            this.Controls.Add(this.filterControl1);
+            this.Controls.Add(this.filterControl);
             this.Controls.Add(this.map);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -107,8 +108,10 @@
         #endregion
 
         private ControlMap map;
-        private FilterControl filterControl1;
+        private FilterControl filterControl;
         private ClassificationControl classiControl;
+        private IParkSystem parkSystem;
+
     }
 }
 

@@ -81,6 +81,15 @@ namespace View.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Dirección Territorial,Área Protegida,Adulto nacional o extranjero residente,Niños de 5 a12 años Nacionales o Extranjeros,Estudiantes con recibo de matricula o carné vigente,Adulto Extranjero,Buzo día (Nacional),Instructores acompañantes de grupo día (Nacional),Embarcaciones 24h (Nacional),Buzo o instructor en Barco día (Bandera extranjera),Buzo o instructor en barco día (Bandera Colombiana),Embarcacion/24 Horas (Exranejeros),Ingreso Automovil,Ingreso Colectivo,Ingreso Bus - Buseta,Ingreso moto,Alojamiento c [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string Precios {
+            get {
+                return ResourceManager.GetString("Precios", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a direccion_territorial,area_protegida,mes,adultos_nacionales_2011,ninos_y_estudiantes_2011,extranjeros_2011,extranjeros_residentes_2011,ninos_residentes_2011,adultos_residentes_2011,ninos_excentos_no_residentes_2011,adultos_excentos_no_residentes_2011,adultos_nacionales_2012,ninos_y_estudiantes_2012,extranjeros_2012,extranjeros_residentes_2012,ninos_residentes_2012,adultos_residentes_2012,ninos_excentos_no_residentes_2012,adultos_excentos_no_residentes_2012,adultos_nacionales_2013,ninos_y_estudiantes_2013,ex [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string Visitantes {

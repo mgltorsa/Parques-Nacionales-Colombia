@@ -110,6 +110,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\LimitesParques.csv" />
+    <None Include="Resources\Precios.csv" />
     <None Include="Resources\Visitantes.csv" />
   </ItemGroup>
   <ItemGroup>

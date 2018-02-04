@@ -8,11 +8,7 @@ namespace Model
 {
     public class Zone : IZone
     {
-        public const string PNN = "PNN";
-        public const string SFF = "SFF";
-        public const string RN = "RN";
-        public const string ANU = "ANU";
-        public const string VP = "VP";
+       
 
 
         private string name;
@@ -20,6 +16,7 @@ namespace Model
         private IPolygon polygon;
         private string resolution;
         private string territory;
+        private IVisits visits;
         
 
 
@@ -30,6 +27,13 @@ namespace Model
             this.polygon = polygon;
             this.resolution = resolution;
             this.territory = territory;
+            visits = new Visits();
+        }
+
+     
+        public void AddVisits(string year, string month, int visitCount)
+        {
+            visits.Add(year,month,visitCount);
         }
 
         public string GetCategory()
@@ -56,5 +60,12 @@ namespace Model
         {
             return territory;
         }
+
+        public IVisits GetVisits()
+        {
+            return visits;
+        }
+
+        
     }
 }

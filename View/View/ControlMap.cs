@@ -17,15 +17,12 @@ namespace View
     public partial class ControlMap : GMapControl
     {
 
-        private GMapOverlay polygonOverlay;
-        private GMapOverlay markerOverlay;
-        private Main main;
-        private GMarkerGoogle currentMarker;
-        private GMapPolygon currentPolygon;
+
 
         public ControlMap()
         {
             InitializeComponent();
+            viewLabelsName = false;
         }
 
         public void SetMain(Main main)
@@ -40,7 +37,10 @@ namespace View
             DragButton = MouseButtons.Left;
             CanDragMap = true;
             Position = new PointLatLng(Main.INIT_LAT, Main.INIT_LNG);
-            MapProvider = GMapProviders.GoogleTerrainMap;
+            MapProvider = GoogleTerrainMapProvider.Instance;
+            Manager.Mode = AccessMode.ServerOnly;
+
+
             MinZoom = 0;
             MaxZoom = 24;
             Zoom = 9;
@@ -49,12 +49,31 @@ namespace View
             AddOverlay(markerOverlay);
         }
 
+        public void ShowNamesLabels(bool check)
+        {
+            viewLabelsName = check;
+            foreach (var item in polygonOverlay.Markers)
+            {
+                if (viewLabelsName)
+                {
+                    item.ToolTipMode = MarkerTooltipMode.Always;
+
+                }
+                else
+                {
+                    item.ToolTipMode = MarkerTooltipMode.Never;
+                }
+                item.IsVisible = viewLabelsName;
+
+            }
+
+        }
+
         private void AddOverlay(GMapOverlay overlay)
         {
             Overlays.Add(overlay);
 
         }
-
 
 
         public void RefreshAreas(ICollection<IZone> collectionZone)
@@ -69,16 +88,26 @@ namespace View
                     double lat = point.Latitude;
                     double length = point.Length;
                     PointLatLng pointL = new PointLatLng(lat, length);
+
                     points.Add(pointL);
                 }
+
                 GMapPolygon mapPolygon = new GMapPolygon(points, zone.GetName())
                 {
                     Fill = new SolidBrush(iPolygon.GetColor()),
                     Stroke = Pens.Black,
                     IsVisible = true
                 };
+
+
+                GMarkerGoogle marker = new GMarkerGoogle(points.ToArray()[0], GMarkerGoogleType.green_dot);
+                marker.ToolTipText = zone.GetName();
+
+                polygonOverlay.Markers.Add(marker);
                 polygonOverlay.Polygons.Add(mapPolygon);
+
             }
+            ShowNamesLabels(viewLabelsName);
         }
 
         public string GetInfoZone(string zoneName)
@@ -102,11 +131,14 @@ namespace View
 
         internal void MouseMoved(int x, int y)
         {
+
             PointLatLng point = FromLocalToLatLng(x, y);
             if (!(currentPolygon != null && currentPolygon.IsInside(point)))
             {
                 SelectPolygon(point);
             }
+
+
         }
 
         private void SelectPolygon(PointLatLng point)
@@ -122,8 +154,8 @@ namespace View
             if (item.IsInside(point))
             {
                 currentPolygon = item;
-                polygonOverlay.Markers.Clear();
-                currentMarker = new GMarkerGoogle(point, GMarkerGoogleType.green_dot)
+                polygonOverlay.Markers.Remove(currentMarker);
+                currentMarker = new GMarkerGoogle(point, GMarkerGoogleType.blue_small)
                 {
                     ToolTipMode = MarkerTooltipMode.OnMouseOver,
                     ToolTipText = GetInfoZone(item.Name)
@@ -145,6 +177,6 @@ namespace View
             }
         }
 
-       
+
     }
 }

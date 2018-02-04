@@ -1,4 +1,7 @@
-﻿namespace View
+﻿using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+
+namespace View
 {
     partial class ControlMap
     {
@@ -38,5 +41,11 @@
         }
 
         #endregion
+        private GMapOverlay polygonOverlay;
+        private GMapOverlay markerOverlay;
+        private Main main;
+        private GMarkerGoogle currentMarker;
+        private GMapPolygon currentPolygon;
+        private bool viewLabelsName;
     }
 }

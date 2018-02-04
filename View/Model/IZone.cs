@@ -13,7 +13,8 @@ namespace Model
         IPolygon GetPolygonArea();
         string GetTerritory();
         string GetResolution();
-
+        IVisits GetVisits();
+        void AddVisits(string year, string month,int visitCount);
 
     }
 }
