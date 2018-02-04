@@ -39,7 +39,7 @@
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemmory = 5;
-            this.map.Location = new System.Drawing.Point(219, 13);
+            this.map.Location = new System.Drawing.Point(212, 26);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 2;
             this.map.MinZoom = 2;
@@ -53,7 +53,7 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(384, 339);
+            this.map.Size = new System.Drawing.Size(740, 540);
             this.map.TabIndex = 0;
             this.map.Zoom = 0D;
             // 
@@ -61,7 +61,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 434);
+            this.ClientSize = new System.Drawing.Size(980, 599);
             this.Controls.Add(this.map);
             this.Name = "Main";
             this.Text = "Form1";

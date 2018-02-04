@@ -55,35 +55,47 @@ namespace View
 
             StreamWriter sw = new StreamWriter(s.OpenFile());
             sr.ReadLine();
+            GMapOverlay polygonOverlay = new GMapOverlay("PolygonOverlay");
 
-            List<PointLatLng> points = new List<PointLatLng>();
 
-            string line = sr.ReadLine();
-            string[] info = line.Split(',');
-            int count = 3;
-            for (int i = count; i < info.Length; i++)
+            while (!sr.EndOfStream)
             {
-                string infoCoordinates = info[i].Trim();
-                string[] parCoordinates = infoCoordinates.Split(' ');
+                string line = sr.ReadLine();
+                string[] info = line.Split(',');
+                int count = 3;
+                List<PointLatLng> points = new List<PointLatLng>();
 
-                double lng = 0;
-                double lat = 0;
-                if (parCoordinates.Length>1)
+                for (int i = count; i < info.Length; i++)
                 {
-                    Double.TryParse(parCoordinates[0], out lng);
-                    Double.TryParse(parCoordinates[1], out lat);
+                    string infoCoordinates = info[i].Trim();
+                    string[] parCoordinates = infoCoordinates.Split(' ');
+
+                    double lng = 0;
+                    double lat = 0;
+                    if (parCoordinates.Length > 1)
+                    {
+                        Double.TryParse(parCoordinates[0], out lng);
+                        Double.TryParse(parCoordinates[1], out lat);
+                    }
+
+                    if (lng == 0 || lat == 0)
+                    {
+                        count = i;
+                        break;
+                    }
+                    else
+                    {
+                        sw.WriteLine(parCoordinates[0] + " " + parCoordinates[1]);
+                        points.Add(new PointLatLng(lat, lng));
+                    }
                 }
 
-                if (lng == 0 || lat == 0)
+
+                GMapPolygon polygon = new GMapPolygon(points, "Polygon1")
                 {
-                    count = i;
-                    break;
-                }
-                else
-                {
-                    sw.WriteLine(parCoordinates[0] + " " + parCoordinates[1]);
-                    points.Add(new PointLatLng(lat, lng));
-                }
+                    Fill = Brushes.GreenYellow
+                };
+                polygonOverlay.Polygons.Add(polygon);
             }
 
 
@@ -91,12 +103,6 @@ namespace View
 
             sw.Close();
 
-            GMapOverlay polygonOverlay = new GMapOverlay("PolygonOverlay");
-            GMapPolygon polygon = new GMapPolygon(points, "Polygon1")
-            {
-                Fill = Brushes.Black
-            };
-            polygonOverlay.Polygons.Add(polygon);
             map.Overlays.Add(polygonOverlay);
             map.Zoom += 1;
             map.Zoom -= 1;
