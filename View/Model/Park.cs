@@ -58,11 +58,11 @@ namespace Model
             IPark z2 = (IPark)zone2;
             if (z1.GetCost() < z2.GetCost())
             {
-                return -1;
+                return 1;
             }
             else if (z1.GetCost() > z2.GetCost())
             {
-                return 1;
+                return -1;
             }
 
             return 0;

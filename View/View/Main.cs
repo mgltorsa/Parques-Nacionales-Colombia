@@ -33,6 +33,12 @@ namespace View
             dialog.SetMain(this);
         }
 
+
+
+        public void ChangeFilter()
+        {
+            map.changeFilter();
+        }
         public void ShowCostForm()
         {
             string nameZone = map.GetCurrentZone();

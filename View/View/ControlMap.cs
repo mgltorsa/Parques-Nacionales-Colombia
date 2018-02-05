@@ -51,6 +51,17 @@ namespace View
             AddOverlay(currentOverlay);
         }
 
+        internal void changeFilter()
+        {
+            if (currentMarker != null)
+            {
+                if (currentPolygon != null)
+                {
+                    currentMarker.ToolTipText = GetInfoZone(currentPolygon.Name);
+                }
+            }
+        }
+
         public string GetCurrentZone()
         {
 

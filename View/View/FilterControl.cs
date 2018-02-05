@@ -30,6 +30,10 @@ namespace View
             {
                 main.ShowNamesLabels(cbNames.Checked);
             }
+            else
+            {
+                main.ChangeFilter();
+            }
 
 
         }

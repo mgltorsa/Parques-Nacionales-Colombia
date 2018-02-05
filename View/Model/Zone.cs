@@ -70,11 +70,11 @@ namespace Model
         {
             if (park1.GetVisits().GetTotalVisits() < park2.GetVisits().GetTotalVisits())
             {
-                return -1;
+                return 1;
             }
            else  if (park1.GetVisits().GetTotalVisits() > park2.GetVisits().GetTotalVisits())
             {
-                return 1;
+                return -1;
             }
 
             return 0;
