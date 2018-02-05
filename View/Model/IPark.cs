@@ -11,7 +11,8 @@ namespace Model
         string GetSchedule();
         string GetCosts();
         void AddCost(string description, string value);
-
+        bool GetOpeningState();
+        double GetCost();
 
 
     }

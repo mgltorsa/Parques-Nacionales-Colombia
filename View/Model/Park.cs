@@ -15,17 +15,19 @@ namespace Model
         public const string VP = "VP";
 
         private Cost cost;
+        private bool openingState;
 
-        public Park(string name, string category, IPolygon polygon, string resolution, string territory) : base(name, category, polygon, resolution, territory)
+        public Park(string name, string category, IPolygon polygon, string resolution, string territory, bool openingState) : base(name, category, polygon, resolution, territory)
         {
             cost = new Cost();
+            this.openingState = openingState;
         }
 
         public void AddCost(string description, string value)
         {
-            cost.AddCost(description,value);
+            cost.AddCost(description, value);
         }
-        
+
 
         public string GetCosts()
         {
@@ -42,7 +44,34 @@ namespace Model
 
         public string GetSchedule()
         {
-            throw new NotImplementedException();
+            return "No disponible";
+        }
+
+        public bool GetOpeningState()
+        {
+            return openingState;
+        }
+
+        public static int ComparyByCost(IZone zone1, IZone zone2)
+        {
+            IPark z1 = (IPark)zone1;
+            IPark z2 = (IPark)zone2;
+            if (z1.GetCost() < z2.GetCost())
+            {
+                return -1;
+            }
+            else if (z1.GetCost() > z2.GetCost())
+            {
+                return 1;
+            }
+
+            return 0;
+
+        }
+
+        public double GetCost()
+        {
+            return cost.GetCost();
         }
     }
 }

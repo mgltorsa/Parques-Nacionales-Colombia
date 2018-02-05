@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,11 +64,23 @@
     <Compile Include="ControlMap.Designer.cs">
       <DependentUpon>ControlMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog.Designer.cs">
+      <DependentUpon>Dialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FilterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FilterControl.Designer.cs">
       <DependentUpon>FilterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InformationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InformationControl.Designer.cs">
+      <DependentUpon>InformationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -83,8 +96,14 @@
     <EmbeddedResource Include="ControlMap.resx">
       <DependentUpon>ControlMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialog.resx">
+      <DependentUpon>Dialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FilterControl.resx">
       <DependentUpon>FilterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformationControl.resx">
+      <DependentUpon>InformationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

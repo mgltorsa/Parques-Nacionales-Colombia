@@ -22,17 +22,63 @@ namespace View
     {
         public const double INIT_LAT = 4.0000000;
         public const double INIT_LNG = -72.0000000;
-        public const string LIMITS_PATH = "..//..//Resources/LimitesParques.csv";
         public const string VISITORS_PATH = "..//..//Resources/Visitantes.csv";
         public const string COST_PATH = "..//..//Resources/Precios.csv";
+        public const string LIMITS_PATH = "..//..//Resources/LimitesParques.csv";
 
 
-        
         public Main()
         {
             InitializeComponent();
+            dialog.SetMain(this);
+        }
+
+        public void ShowCostForm()
+        {
+            string nameZone = map.GetCurrentZone();
+            if (nameZone != null)
+            {
+                dialog.SetTitle("Precios");
+                IPark park = (IPark)parkSystem.GetZone(nameZone);
+                string lineInfo = park.GetCosts();
+                if (!lineInfo.Equals(""))
+                {
+
+                    dialog.SetChartMode(false);
+                    string[] info = lineInfo.Split(',');
+                    dialog.SetInfo(info);
+                    dialog.Enabled = true;
+                    dialog.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No se posee este tipo de información de: " + park.GetName());
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Con ayuda del marcador (doble click) seleccione un parque y presione de nuevo");
+            }
 
         }
+
+        public void ShowScheduleForm()
+        {
+            MessageBox.Show("No disponible");
+        }
+
+        public void ShowViewerForm()
+        {
+            IZone zone = null;
+            if ((zone = parkSystem.GetZone(map.GetCurrentZone())) != null)
+            {
+                dialog.LoadSeriesChart();
+                
+            }
+
+        }
+
 
         public void ShowNamesLabels(bool check)
         {
@@ -61,6 +107,27 @@ namespace View
             map.RefreshAreas(zones);
         }
 
+
+        public string[] GetSerieVisits(string year)
+        {
+            IZone zone = parkSystem.GetZone(map.GetCurrentZone());
+
+            List<string> serie = new List<string>();
+            zone.GetVisits().GetVisitsSerie(year,serie);
+
+            return serie.ToArray() ;
+        }
+
+        public double[] GetVisits(string year, string[] serie)
+        {
+            
+            IZone zone = parkSystem.GetZone(map.GetCurrentZone());
+            List<double> data = new List<double>();
+            zone.GetVisits().GetVisitsData(year,serie,data);
+
+            return data.ToArray();
+        }
+
         public void FilterByCategory()
         {
             ICollection<IZone> zones = parkSystem.FilterZoneByCategory();
@@ -69,25 +136,7 @@ namespace View
 
         private void Main_Load(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.ShowDialog();
-            StreamWriter sw = new StreamWriter(save.OpenFile());
-            StreamReader reader = new StreamReader(path: COST_PATH);
-
-            reader.ReadLine();
-            string line = null;
-            while ((line = reader.ReadLine()) != null)
-            {
-                string[] infoCosts = line.Split(',');
-                foreach (var item in infoCosts)
-                {
-                    sw.Write(item+" ");
-                }
-                sw.WriteLine();
-            }
-
-            reader.Close();
-            sw.Close();
+            LoadDefaultOptions();
         }
 
         private void LoadDefaultOptions()
@@ -97,6 +146,7 @@ namespace View
             map.SetMain(this);
             classiControl.SetMain(this);
             filterControl.SetMain(this);
+            infoControl.SetMain(this);
             LoadAreasFile();
             LoadVisitorsFile();
             LoadCostsFile();
@@ -106,7 +156,6 @@ namespace View
         private void LoadCostsFile()
         {
             parkSystem.ReadCostsFile(COST_PATH);
-            SaveCostsFile();
         }
 
         private void SaveCostsFile()
@@ -206,7 +255,7 @@ namespace View
             IPark park = (IPark)zone;
             if (filters[FilterControl.COST])
             {
-                infoZone += "Precio entrada: " + park.GetCosts() + "\n";
+                infoZone += "Precio total: " + "\n" + park.GetCost() + "\n";
             }
 
             if (filters[FilterControl.SCHEDULE])
@@ -216,12 +265,13 @@ namespace View
 
             if (filters[FilterControl.VISITS])
             {
-                infoZone += "Visitas Ultimos dos años: " + park.GetVisits().GetVisitsTwoYears(DateTime.Now.Year - 2 + "", DateTime.Now.Year + "");
+                infoZone += "Visitas Ultimos dos años: " + (park.GetVisits().GetTotalVisits((DateTime.Now.Year - 6)+ "") + park.GetVisits().GetTotalVisits((DateTime.Now.Year-7) + ""))
+                    +"\n";
             }
 
             if (filters[FilterControl.FORECAST])
             {
-                infoZone += "Pronostico de visitas: " + park.GetVisits();
+                infoZone += "Pronostico de visitas: " + park.GetVisits().GetForecastVisits("2018")+"\n";
 
             }
 

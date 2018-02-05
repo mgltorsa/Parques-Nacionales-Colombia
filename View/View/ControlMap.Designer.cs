@@ -47,5 +47,6 @@ namespace View
         private GMarkerGoogle currentMarker;
         private GMapPolygon currentPolygon;
         private bool viewLabelsName;
+        private GMapOverlay currentOverlay;
     }
 }

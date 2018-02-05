@@ -66,6 +66,20 @@ namespace Model
             return visits;
         }
 
-        
+        public static int CompareByVisits(IZone park1, IZone park2)
+        {
+            if (park1.GetVisits().GetTotalVisits() < park2.GetVisits().GetTotalVisits())
+            {
+                return -1;
+            }
+           else  if (park1.GetVisits().GetTotalVisits() > park2.GetVisits().GetTotalVisits())
+            {
+                return 1;
+            }
+
+            return 0;
+
+        }
+
     }
 }

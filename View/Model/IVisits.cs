@@ -8,12 +8,14 @@ namespace Model
 {
     public interface IVisits
     {
-        int GetVisits(string year);
-        int GetVisits(string year, string month);
-        int GetTotalVisits();
-        int GetForecastVisits(string year, string month);
-        int GetVisitsTwoYears(string oldYear, string currentYear);
+        double GetTotalVisits(string year);
+        double GetVisits(string year, string month);
+        double GetTotalVisits();
+        double GetForecastVisits(string year, string month);
+        double GetForecastVisits(string year);
         void Add(string year, string month, int countVisits);
+        void GetVisitsData(string year, string[] serie, List<double> data);
+        void GetVisitsSerie(string year,List<string> serie);
         List<Visit> GetVisits();
 
     }

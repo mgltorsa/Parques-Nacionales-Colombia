@@ -34,6 +34,7 @@ namespace View
         {
             polygonOverlay = new GMapOverlay("Polygons");
             markerOverlay = new GMapOverlay("Markers");
+            currentOverlay = new GMapOverlay("Currents");
             DragButton = MouseButtons.Left;
             CanDragMap = true;
             Position = new PointLatLng(Main.INIT_LAT, Main.INIT_LNG);
@@ -47,6 +48,19 @@ namespace View
             AutoScroll = true;
             AddOverlay(polygonOverlay);
             AddOverlay(markerOverlay);
+            AddOverlay(currentOverlay);
+        }
+
+        public string GetCurrentZone()
+        {
+
+            if (currentPolygon != null)
+            {
+                return currentPolygon.Name;
+            }
+
+            return null;
+
         }
 
         public void ShowNamesLabels(bool check)
@@ -100,8 +114,10 @@ namespace View
                 };
 
 
-                GMarkerGoogle marker = new GMarkerGoogle(points.ToArray()[0], GMarkerGoogleType.green_dot);
-                marker.ToolTipText = zone.GetName();
+                GMarkerGoogle marker = new GMarkerGoogle(points.ToArray()[0], GMarkerGoogleType.green_dot)
+                {
+                    ToolTipText = zone.GetName()
+                };
 
                 polygonOverlay.Markers.Add(marker);
                 polygonOverlay.Polygons.Add(mapPolygon);
@@ -121,58 +137,100 @@ namespace View
             double lat = FromLocalToLatLng(x, y).Lat;
             double lng = FromLocalToLatLng(x, y).Lng;
 
-            GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lat, lng), GMarkerGoogleType.blue_pushpin)
+            bool nul = currentMarker == null;
+            if (!nul)
+            {
+                currentOverlay.Markers.Remove(currentMarker);
+            }
+            PointLatLng point = new PointLatLng(lat, lng);
+            currentMarker = new GMarkerGoogle(point, GMarkerGoogleType.blue_dot)
             {
                 ToolTipMode = MarkerTooltipMode.OnMouseOver,
                 ToolTipText = "Latitud: " + lat + " Longitud: " + lng
             };
-            markerOverlay.Markers.Add(marker);
+
+            currentPolygon = SelectPolygon(point);
+            if (currentPolygon != null)
+            {
+
+                currentMarker.ToolTipText = GetInfoZone(currentPolygon.Name);
+
+            }
+
+            currentOverlay.Markers.Add(currentMarker);
+
         }
 
         internal void MouseMoved(int x, int y)
         {
 
             PointLatLng point = FromLocalToLatLng(x, y);
-            if (!(currentPolygon != null && currentPolygon.IsInside(point)))
+
+
+            GMapPolygon polygon = SelectPolygon(point);
+            if (currentMarker == null)
             {
-                SelectPolygon(point);
+                currentPolygon = polygon;
             }
+
+
+
 
 
         }
 
-        private void SelectPolygon(PointLatLng point)
+        private GMapPolygon SelectPolygon(PointLatLng point)
         {
+            GMapPolygon polygon = null;
             foreach (GMapPolygon item in polygonOverlay.Polygons)
             {
-                InsidePolygon(item, point);
+                polygon = InsidePolygon(item, point);
+                if (polygon != null)
+                {
+                    break;
+                }
             }
+
+            return polygon;
+
         }
 
-        private void InsidePolygon(GMapPolygon item, PointLatLng point)
+        private GMapPolygon InsidePolygon(GMapPolygon item, PointLatLng point)
         {
             if (item.IsInside(point))
             {
-                currentPolygon = item;
-                polygonOverlay.Markers.Remove(currentMarker);
-                currentMarker = new GMarkerGoogle(point, GMarkerGoogleType.blue_small)
-                {
-                    ToolTipMode = MarkerTooltipMode.OnMouseOver,
-                    ToolTipText = GetInfoZone(item.Name)
-                };
-                polygonOverlay.Markers.Add(currentMarker);
+                markerOverlay.Markers.Clear();
 
+                if (currentMarker != null && item.IsInside(currentMarker.Position))
+                {
+
+                    currentMarker.ToolTipText = GetInfoZone(currentPolygon.Name);
+                    return item;
+
+                }
+                else
+                {
+                    GMarkerGoogle marker = new GMarkerGoogle(point, GMarkerGoogleType.blue_small)
+                    {
+                        ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                        ToolTipText = GetInfoZone(item.Name)
+                    };
+                    markerOverlay.Markers.Add(marker);
+                    return item;
+                }
             }
+            return null;
+
         }
 
         public void MouseRightOption()
         {
-            foreach (var marker in markerOverlay.Markers)
+            if (currentMarker != null)
             {
-                if (marker.IsMouseOver)
+                if (currentMarker.IsMouseOver)
                 {
-                    markerOverlay.Markers.Remove(marker);
-                    return;
+                    polygonOverlay.Markers.Remove(currentMarker);
+                    currentMarker = null;
                 }
             }
         }

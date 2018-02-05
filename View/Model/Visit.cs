@@ -8,21 +8,25 @@ namespace Model
 {
     public class Visit
     {
-        const int FINAL_DAY = 15;
         private string month;
         private string year;
-        private int visits;
+        private double visits;
 
-        public Visit(string month, string year, int visitsCount)
+
+
+        public Visit(string month, string year, double visitsCount)
         {
-
             this.month = month;
             this.year = year;
             this.visits = visitsCount;
 
         }
-        public int GetVisits()
+
+
+        public double GetVisits()
         {
+
+
             return visits;
         }
 
@@ -35,6 +39,13 @@ namespace Model
         {
             return month;
         }
+
+        public int GetIntMonth()
+        {
+
+            return DateTime.Parse("01/" + month + "/" + year).Month;
+        }
+
 
 
     }

@@ -29,11 +29,21 @@ namespace View
         /// </summary>
         private void InitializeComponent()
         {
+            dialog = new Dialog();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            this.infoControl = new View.InformationControl();
             this.classiControl = new View.ClassificationControl();
             this.filterControl = new View.FilterControl();
             this.map = new View.ControlMap();
             this.SuspendLayout();
+            // 
+            // infoControl
+            // 
+            this.infoControl.BackColor = System.Drawing.Color.LightGray;
+            this.infoControl.Location = new System.Drawing.Point(110, 441);
+            this.infoControl.Name = "infoControl";
+            this.infoControl.Size = new System.Drawing.Size(278, 241);
+            this.infoControl.TabIndex = 4;
             // 
             // classiControl
             // 
@@ -93,6 +103,7 @@ namespace View
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1194, 714);
+            this.Controls.Add(this.infoControl);
             this.Controls.Add(this.classiControl);
             this.Controls.Add(this.filterControl);
             this.Controls.Add(this.map);
@@ -111,7 +122,8 @@ namespace View
         private FilterControl filterControl;
         private ClassificationControl classiControl;
         private IParkSystem parkSystem;
-
+        private InformationControl infoControl;
+        private Dialog dialog;
     }
 }
 

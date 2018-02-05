@@ -10,15 +10,18 @@ namespace Model
     {
 
         private Dictionary<string, string> costs;
+        private double cost;
 
         public Cost()
         {
+            cost = 0;
             costs = new Dictionary<string, string>();
         }
 
         public void AddCost(string description, string value)
         {
-            costs[description] = value;
+
+            costs[description] = value.Trim();
 
         }
 
@@ -27,8 +30,18 @@ namespace Model
             string info = "";
             foreach (var key in costs.Keys)
             {
-                info += key + " "+"\n" +" " +costs[key] +" "+ "\n";
+                string value = costs[key];
+                info += key+": ";
+                if (Double.TryParse(value, out double num))
+                {
+                    info += " $";
+                }
+                
+                    info += costs[key]+",";
+                
+
             }
+            
 
             return info;
         }
@@ -45,6 +58,25 @@ namespace Model
             {
                 return description + " " + value;
             }
+        }
+
+        public double GetCost()
+        {
+            if (cost == 0)
+            {
+                double c = 0.0;
+                foreach (var item in costs.Values)
+                {
+                    if (Double.TryParse(item, out double parse))
+                    {
+                        c += parse;
+                    }
+                }
+
+                cost = c;
+            }
+
+            return cost;
         }
     }
 }
