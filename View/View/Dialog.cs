@@ -136,21 +136,29 @@ namespace View
             string[] serie = main.GetSerieVisits((DateTime.Now.Year - 6) + "");
             if (serie != null && serie.Length > 0)
             {
-                double[] points = main.GetVisits((DateTime.Now.Year - 6) + "", serie);
-
-                graphic.Titles.Add("Visitantes: 2012-2014");
-                for (int i = 0; i < serie.Length; i++)
+                try
                 {
+                    double[] points = main.GetVisits((DateTime.Now.Year - 6) + "", serie);
+
+                    graphic.Titles.Add("Visitantes: 2012-2014");
+                    for (int i = 0; i < serie.Length; i++)
+                    {
 
 
-                    Series series = graphic.Series.Add(i+"");
-                    series.Label = points[i].ToString();
-                    series.Points.Add(points);
+                        Series series = graphic.Series.Add(i + "");
+                        series.Label = points[i].ToString();
+                        series.Points.Add(points);
+                    }
+
+                    SetChartMode(true);
+                    Enabled = true;
+                    ShowDialog();
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Problemas con el grafico, valores repetidos");
 
-                SetChartMode(true);
-                Enabled = true;
-                ShowDialog();
+                }
             }
             else
             {

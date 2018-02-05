@@ -316,7 +316,5 @@ namespace View
         {
             map.MouseMoved(e.X, e.Y);
         }
-
-
     }
 }

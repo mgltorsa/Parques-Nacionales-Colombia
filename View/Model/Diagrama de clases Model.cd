@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Model.Cost">
+    <Position X="0.5" Y="9.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAIAAAAAAIAAAIAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Cost.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.DoublePoint">
+    <Position X="7.5" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAEAIAABACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DoublePoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Park">
+    <Position X="0.5" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAAAAAAAAAAAAAAAAKQAQJgQUAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Park.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="cost" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Model.ParkSystem" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="0.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AFwAAgABAEAAAIAAAAKAAIAAAiCgAAAgEAAAAJEAkMA=</HashCode>
+      <FileName>ParkSystem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Model.Polygon" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACBAAAAAAAAAAAABAACQAAAAACBYEgAAAAAAAA=</HashCode>
+      <FileName>Polygon.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="points" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Model.Visit">
+    <Position X="15" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AgAEAAAAAAAAAABAAAAEAAAAAAQAAAAABAAEAAAAAAA=</HashCode>
+      <FileName>Visit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Model.Visits" BaseTypeListCollapsed="true">
+    <Position X="14.75" Y="5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAIAAIAABBAAAAAEEIAAAAAAQACACAAAEQAEAIAA=</HashCode>
+      <FileName>Visits.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Model.Zone">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAQECAAAAAAAEAKAAAAAEoAAAAAAMCAAABAA=</HashCode>
+      <FileName>Zone.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="polygon" />
+      <Field Name="visits" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.461" />
+  </Class>
+  <Interface Name="Model.IPark">
+    <Position X="3.75" Y="8.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAIQAAIgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IPark.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Model.IParkSystem">
+    <Position X="10.25" Y="7.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAABAEAAAIAAAACAAAAAAgCAAAAgAAAAABEAAAA=</HashCode>
+      <FileName>IParkSystem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Model.IPolygon">
+    <Position X="4" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAABAAAAAAAAAAAABAAAAAAAAACAIEgAAAAAAAA=</HashCode>
+      <FileName>IPolygon.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Model.IVisits">
+    <Position X="7.5" Y="1.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAMAAIAAAAAAAAAAAAAAAAAAAAAQAAACAAAEAAAAAAA=</HashCode>
+      <FileName>IVisits.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Model.IZone">
+    <Position X="3.25" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAECAAAAAAAAAIAAAAAAgAAAAAAECAAABAA=</HashCode>
+      <FileName>IZone.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

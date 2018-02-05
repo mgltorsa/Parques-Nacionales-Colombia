@@ -57,5 +57,8 @@
     <Compile Include="Visits.cs" />
     <Compile Include="Zone.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Diagrama de clases Model.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
